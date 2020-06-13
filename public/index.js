@@ -24,10 +24,10 @@ selector.clearBtn.addEventListener("click", () => {
 });
 
 selector.backspaceBtn.addEventListener("click", () => {
-  if (!resultBar.innerText) return;
-  let tempArr = resultBar.innerText.split("");
+  if (!logsBar.innerText) return;
+  let tempArr = logsBar.innerText.split("");
   tempArr.pop();
-  resultBar.innerText = tempArr.join("");
+  logsBar.innerText = tempArr.join("");
 });
 
 // Arithmatic Operations
@@ -37,6 +37,8 @@ for (const key in selector.operations) {
       aOps = [e.target.innerText];
       logsBar.innerText = record[0] + e.target.innerText;
       console.log(record, aOps);
+      equaled = false;
+      isSign = true;
     }
     // Return If NO number is entered or just Dot is entered
     if (!isSign && (!result || result == ".")) return;
@@ -110,12 +112,12 @@ selector.plusMinusBtn.addEventListener("click", () => {
 function buttonHandler(e) {
   // If User Pressed Equal Last time
   if (equaled) {
-    // record = [];
+    record = [];
     isSign = false;
     result = 0;
-    // aOps = [];
+    aOps = [];
     equaled = false;
-    // logsBar.innerText = "";
+    logsBar.innerText = "";
   }
   // Special Case for DOT (.)
   if (e.target.innerHTML == ".") {
